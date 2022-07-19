@@ -20,13 +20,14 @@ import org.joda.time.format.ISODateTimeFormat;
 import org.testng.annotations.Test;
 
 import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.concurrent.TimeUnit;
 
 import static com.facebook.presto.orc.reader.ApacheHiveTimestampDecoder.decodeTimestamp;
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
-import static org.joda.time.DateTimeZone.UTC;
 import static org.testng.Assert.assertEquals;
 
 public class TestApacheHiveTimestampDecoder
@@ -68,7 +69,7 @@ public class TestApacheHiveTimestampDecoder
 
     private static void test(long seconds, long nanos, boolean microsecondsPrecision, Timestamp expected)
     {
-        long tsAsLong = decodeTimestamp(seconds, nanos, new DecodeTimestampOptions(UTC, microsecondsPrecision));
+        long tsAsLong = decodeTimestamp(seconds, nanos, new DecodeTimestampOptions(ZonedDateTime.now(ZoneId.of("UTC")), microsecondsPrecision));
         TimeUnit unit = microsecondsPrecision ? MICROSECONDS : MILLISECONDS;
         long unitsPerSec = unit.convert(1, TimeUnit.SECONDS);
         Timestamp ts = new Timestamp(1000 * (tsAsLong / unitsPerSec));

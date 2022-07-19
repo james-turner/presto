@@ -44,13 +44,13 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import com.google.common.primitives.Ints;
 import io.airlift.slice.Slice;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import javax.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -175,7 +175,7 @@ public class OrcSelectiveRecordReader
             Map<Integer, Integer> dwrfEncryptionGroupMap,
             Map<Integer, Slice> intermediateKeyMetadata,
             int rowsInRowGroup,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             boolean legacyMapSubscript,
             PostScript.HiveWriterVersion hiveWriterVersion,
@@ -581,7 +581,7 @@ public class OrcSelectiveRecordReader
     private static SelectiveStreamReader[] createStreamReaders(
             OrcDataSource orcDataSource,
             List<OrcType> types,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             boolean legacyMapSubscript,
             Map<Integer, Type> includedColumns,

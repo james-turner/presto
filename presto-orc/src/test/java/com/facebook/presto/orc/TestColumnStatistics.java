@@ -31,11 +31,12 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import io.airlift.units.DataSize;
-import org.joda.time.DateTimeZone;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -396,7 +397,7 @@ public class TestColumnStatistics
                 OrcPredicate.TRUE,
                 0,
                 dataSource.getSize(),
-                DateTimeZone.UTC,
+                ZonedDateTime.now(ZoneId.of("UTC")),
                 false,
                 NOOP_ORC_AGGREGATED_MEMORY_CONTEXT,
                 Optional.empty(),

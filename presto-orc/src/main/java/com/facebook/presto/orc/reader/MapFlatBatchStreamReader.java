@@ -37,13 +37,13 @@ import com.facebook.presto.orc.stream.InputStreamSources;
 import com.google.common.io.Closer;
 import io.airlift.slice.Slice;
 import io.airlift.slice.Slices;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import javax.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -77,7 +77,7 @@ public class MapFlatBatchStreamReader
 
     private final MapType type;
     private final StreamDescriptor streamDescriptor;
-    private final DateTimeZone hiveStorageTimeZone;
+    private final ZonedDateTime hiveStorageTimeZone;
 
     // This is the StreamDescriptor for the value stream with sequence ID 0, it is used to derive StreamDescriptors for the
     // value streams with other sequence IDs
@@ -102,7 +102,7 @@ public class MapFlatBatchStreamReader
     private OrcAggregatedMemoryContext systemMemoryContext;
     private final OrcRecordReaderOptions options;
 
-    public MapFlatBatchStreamReader(Type type, StreamDescriptor streamDescriptor, DateTimeZone hiveStorageTimeZone, OrcRecordReaderOptions options, OrcAggregatedMemoryContext systemMemoryContext)
+    public MapFlatBatchStreamReader(Type type, StreamDescriptor streamDescriptor, ZonedDateTime hiveStorageTimeZone, OrcRecordReaderOptions options, OrcAggregatedMemoryContext systemMemoryContext)
             throws OrcCorruptionException
     {
         requireNonNull(type, "type is null");

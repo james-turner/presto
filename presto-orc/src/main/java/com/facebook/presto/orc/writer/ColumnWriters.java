@@ -27,8 +27,8 @@ import com.facebook.presto.orc.metadata.statistics.IntegerStatisticsBuilder;
 import com.facebook.presto.orc.metadata.statistics.StatisticsBuilder;
 import com.facebook.presto.orc.metadata.statistics.StringStatisticsBuilder;
 import com.google.common.collect.ImmutableList;
-import org.joda.time.DateTimeZone;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -58,7 +58,7 @@ public final class ColumnWriters
             Type type,
             ColumnWriterOptions columnWriterOptions,
             OrcEncoding orcEncoding,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             DwrfEncryptionInfo dwrfEncryptors,
             MetadataWriter metadataWriter)
     {

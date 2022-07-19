@@ -24,10 +24,10 @@ import com.facebook.presto.orc.StreamDescriptor;
 import com.facebook.presto.orc.Stripe;
 import com.facebook.presto.orc.metadata.ColumnEncoding.ColumnEncodingKind;
 import com.facebook.presto.orc.stream.InputStreamSources;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -54,7 +54,7 @@ public class MapSelectiveStreamReader
             Map<Subfield, TupleDomainFilter> filters,
             List<Subfield> requiredSubfields,
             Optional<Type> outputType,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             boolean legacyMapSubscript,
             OrcAggregatedMemoryContext systemMemoryContext)

@@ -27,10 +27,10 @@ import com.facebook.presto.orc.reader.BatchStreamReader;
 import com.facebook.presto.orc.reader.BatchStreamReaders;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.slice.Slice;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -56,7 +56,7 @@ public class OrcBatchRecordReader
             Map<Integer, Integer> dwrfEncryptionGroupMap,
             Map<Integer, Slice> intermediateKeyMetadata,
             int rowsInRowGroup,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             HiveWriterVersion hiveWriterVersion,
             MetadataReader metadataReader,
@@ -151,7 +151,7 @@ public class OrcBatchRecordReader
     private static BatchStreamReader[] createStreamReaders(
             OrcDataSource orcDataSource,
             List<OrcType> types,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             Map<Integer, Type> includedColumns,
             OrcAggregatedMemoryContext systemMemoryContext)

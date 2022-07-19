@@ -38,8 +38,8 @@ import com.facebook.presto.orc.StreamDescriptor;
 import com.facebook.presto.orc.metadata.OrcType.OrcTypeKind;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
-import org.joda.time.DateTimeZone;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -60,7 +60,7 @@ public final class SelectiveStreamReaders
             Map<Subfield, TupleDomainFilter> filters,
             Optional<Type> outputType,
             List<Subfield> requiredSubfields,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             boolean legacyMapSubscript,
             OrcAggregatedMemoryContext systemMemoryContext)
@@ -161,7 +161,7 @@ public final class SelectiveStreamReaders
             Optional<HierarchicalFilter> parentFilter,
             Optional<Type> outputType,
             List<Subfield> requiredSubfields,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             boolean legacyMapSubscript,
             OrcAggregatedMemoryContext systemMemoryContext)

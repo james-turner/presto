@@ -52,13 +52,13 @@ import io.airlift.slice.DynamicSliceOutput;
 import io.airlift.slice.Slice;
 import io.airlift.slice.Slices;
 import io.airlift.units.DataSize;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import javax.annotation.Nullable;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -121,7 +121,7 @@ public class OrcWriter
     private final StreamLayout streamLayout;
     private final Map<String, String> userMetadata;
     private final CompressedMetadataWriter metadataWriter;
-    private final DateTimeZone hiveStorageTimeZone;
+    private final ZonedDateTime hiveStorageTimeZone;
 
     private final DwrfEncryptionProvider dwrfEncryptionProvider;
     private final DwrfEncryptionInfo dwrfEncryptionInfo;
@@ -162,7 +162,7 @@ public class OrcWriter
             DwrfEncryptionProvider dwrfEncryptionProvider,
             OrcWriterOptions options,
             Map<String, String> userMetadata,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             boolean validate,
             OrcWriteValidationMode validationMode,
             WriterStats stats)
@@ -195,7 +195,7 @@ public class OrcWriter
             DwrfEncryptionProvider dwrfEncryptionProvider,
             OrcWriterOptions options,
             Map<String, String> userMetadata,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             boolean validate,
             OrcWriteValidationMode validationMode,
             WriterStats stats)

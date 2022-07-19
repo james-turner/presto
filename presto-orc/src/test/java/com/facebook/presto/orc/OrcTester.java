@@ -99,7 +99,6 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.orc.OrcConf;
-import org.joda.time.DateTimeZone;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -213,7 +212,7 @@ import static org.testng.Assert.fail;
 public class OrcTester
 {
     public static final DataSize MAX_BLOCK_SIZE = new DataSize(1, Unit.MEGABYTE);
-    public static final DateTimeZone HIVE_STORAGE_TIME_ZONE = DateTimeZone.forID("America/Bahia_Banderas");
+    public static final ZonedDateTime HIVE_STORAGE_TIME_ZONE = ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/Bahia_Banderas"));
 
     private static final boolean LEGACY_MAP_SUBSCRIPT = true;
     private static final FunctionAndTypeManager FUNCTION_AND_TYPE_MANAGER = createTestFunctionAndTypeManager();

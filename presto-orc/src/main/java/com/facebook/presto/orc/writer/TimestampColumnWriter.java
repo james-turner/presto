@@ -34,11 +34,10 @@ import com.facebook.presto.orc.stream.StreamDataOutput;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.slice.Slice;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -96,7 +95,7 @@ public class TimestampColumnWriter
             ColumnWriterOptions columnWriterOptions,
             Optional<DwrfDataEncryptor> dwrfEncryptor,
             OrcEncoding orcEncoding,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             MetadataWriter metadataWriter)
     {
         checkArgument(column >= 0, "column is negative");
@@ -131,7 +130,7 @@ public class TimestampColumnWriter
         }
         this.presentStream = new PresentOutputStream(columnWriterOptions, dwrfEncryptor);
         this.metadataWriter = new CompressedMetadataWriter(metadataWriter, columnWriterOptions, dwrfEncryptor);
-        this.baseTimestampInSeconds = new DateTime(2015, 1, 1, 0, 0, requireNonNull(hiveStorageTimeZone, "hiveStorageTimeZone is null")).getMillis() / MILLIS_PER_SECOND;
+        this.baseTimestampInSeconds = ZonedDateTime.of(2015, 1, 1, 0, 0, 0, 0, requireNonNull(hiveStorageTimeZone, "hiveStorageTimeZone is null").getZone()).toInstant().getEpochSecond();
     }
 
     @Override

@@ -88,6 +88,7 @@ import org.apache.parquet.schema.MessageType;
 import javax.inject.Inject;
 
 import java.io.IOException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -137,7 +138,7 @@ import static java.util.Locale.ENGLISH;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 import static org.apache.parquet.io.ColumnIOConverter.constructField;
-import static org.joda.time.DateTimeZone.UTC;
+//import static org.joda.time.DateTimeZone.UTC;
 
 public class IcebergPageSourceProvider
         implements ConnectorPageSourceProvider
@@ -600,7 +601,7 @@ public class IcebergPageSourceProvider
                     predicate,
                     start,
                     length,
-                    UTC,
+                    java.time.ZonedDateTime.now(ZoneId.of("UTC")),
                     systemMemoryUsage,
                     INITIAL_BATCH_SIZE);
 

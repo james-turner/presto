@@ -38,11 +38,11 @@ import com.google.common.io.Closer;
 import io.airlift.slice.Slice;
 import io.airlift.slice.Slices;
 import io.airlift.units.DataSize;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -142,7 +142,7 @@ abstract class AbstractOrcRecordReader<T extends StreamReader>
             Map<Integer, Integer> dwrfEncryptionGroupMap,
             Map<Integer, Slice> columnToIntermediateKeyMap,
             int rowsInRowGroup,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             PostScript.HiveWriterVersion hiveWriterVersion,
             MetadataReader metadataReader,
             DataSize maxMergeDistance,

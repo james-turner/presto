@@ -45,6 +45,8 @@ import org.openjdk.jmh.runner.options.VerboseMode;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -67,7 +69,6 @@ import static io.airlift.units.DataSize.Unit.MEGABYTE;
 import static java.util.UUID.randomUUID;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.stream.Collectors.toList;
-import static org.joda.time.DateTimeZone.UTC;
 
 @SuppressWarnings("MethodMayBeStatic")
 @State(Scope.Thread)
@@ -230,7 +231,7 @@ public class BenchmarkBatchStreamReadersWithZstd
             return orcReader.createBatchRecordReader(
                     ImmutableMap.of(0, type),
                     OrcPredicate.TRUE,
-                    UTC, // arbitrary
+                    ZonedDateTime.now(ZoneId.of("UTC")), // arbitrary
                     new TestingHiveOrcAggregatedMemoryContext(),
                     INITIAL_BATCH_SIZE);
         }

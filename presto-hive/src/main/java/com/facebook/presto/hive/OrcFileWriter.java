@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -78,7 +79,7 @@ public class OrcFileWriter
             OrcWriterOptions options,
             int[] fileInputColumnIndexes,
             Map<String, String> metadata,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             Optional<Supplier<OrcDataSource>> validationInputFactory,
             OrcWriteValidationMode validationMode,
             WriterStats stats,
@@ -115,7 +116,7 @@ public class OrcFileWriter
             OrcWriterOptions options,
             int[] fileInputColumnIndexes,
             Map<String, String> metadata,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             Optional<Supplier<OrcDataSource>> validationInputFactory,
             OrcWriteValidationMode validationMode,
             WriterStats stats,

@@ -23,11 +23,11 @@ import com.facebook.presto.orc.Stripe;
 import com.facebook.presto.orc.metadata.ColumnEncoding.ColumnEncodingKind;
 import com.facebook.presto.orc.stream.InputStreamSources;
 import com.google.common.io.Closer;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.time.ZonedDateTime;
 
 import static com.facebook.presto.orc.metadata.ColumnEncoding.ColumnEncodingKind.DIRECT;
 import static com.facebook.presto.orc.metadata.ColumnEncoding.ColumnEncodingKind.DIRECT_V2;
@@ -46,7 +46,7 @@ public class MapBatchStreamReader
     private final MapFlatBatchStreamReader flatReader;
     private BatchStreamReader currentReader;
 
-    public MapBatchStreamReader(Type type, StreamDescriptor streamDescriptor, DateTimeZone hiveStorageTimeZone, OrcRecordReaderOptions options, OrcAggregatedMemoryContext systemMemoryContext)
+    public MapBatchStreamReader(Type type, StreamDescriptor streamDescriptor, ZonedDateTime hiveStorageTimeZone, OrcRecordReaderOptions options, OrcAggregatedMemoryContext systemMemoryContext)
             throws OrcCorruptionException
     {
         this.streamDescriptor = requireNonNull(streamDescriptor, "stream is null");

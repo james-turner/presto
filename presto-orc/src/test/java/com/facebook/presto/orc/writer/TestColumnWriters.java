@@ -26,6 +26,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +49,6 @@ import static com.facebook.presto.orc.OrcTester.mapType;
 import static com.facebook.presto.orc.OrcTester.rowType;
 import static com.facebook.presto.orc.metadata.OrcType.toOrcType;
 import static com.facebook.presto.orc.writer.ColumnWriters.createColumnWriter;
-import static org.joda.time.DateTimeZone.UTC;
 import static org.testng.Assert.assertEquals;
 
 public class TestColumnWriters
@@ -121,7 +122,7 @@ public class TestColumnWriters
                 type,
                 columnWriterOptions,
                 DWRF,
-                UTC,
+                ZonedDateTime.now(ZoneId.of("UTC")),
                 UNENCRYPTED,
                 DWRF.createMetadataWriter());
 

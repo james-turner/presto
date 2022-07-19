@@ -18,7 +18,8 @@ import com.facebook.presto.orc.OrcAggregatedMemoryContext;
 import com.facebook.presto.orc.OrcCorruptionException;
 import com.facebook.presto.orc.OrcRecordReaderOptions;
 import com.facebook.presto.orc.StreamDescriptor;
-import org.joda.time.DateTimeZone;
+
+import java.time.ZonedDateTime;
 
 import static com.facebook.presto.common.type.TimestampType.TIMESTAMP_MICROSECONDS;
 
@@ -28,7 +29,7 @@ public final class BatchStreamReaders
     {
     }
 
-    public static BatchStreamReader createStreamReader(Type type, StreamDescriptor streamDescriptor, DateTimeZone hiveStorageTimeZone, OrcRecordReaderOptions options, OrcAggregatedMemoryContext systemMemoryContext)
+    public static BatchStreamReader createStreamReader(Type type, StreamDescriptor streamDescriptor, ZonedDateTime hiveStorageTimeZone, OrcRecordReaderOptions options, OrcAggregatedMemoryContext systemMemoryContext)
             throws OrcCorruptionException
     {
         switch (streamDescriptor.getOrcTypeKind()) {

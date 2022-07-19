@@ -44,6 +44,8 @@ import org.apache.iceberg.types.Types;
 import javax.inject.Inject;
 
 import java.io.IOException;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
@@ -71,7 +73,6 @@ import static com.facebook.presto.spi.StandardErrorCode.NOT_SUPPORTED;
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static java.util.Objects.requireNonNull;
 import static org.apache.iceberg.parquet.ParquetSchemaUtil.convert;
-import static org.joda.time.DateTimeZone.UTC;
 
 public class IcebergFileWriterFactory
 {
@@ -230,7 +231,7 @@ public class IcebergFileWriterFactory
                             .put(PRESTO_VERSION_NAME, nodeVersion.toString())
                             .put(PRESTO_QUERY_ID_NAME, session.getQueryId())
                             .build(),
-                    UTC,
+                    ZonedDateTime.now(ZoneOffset.UTC),
                     validationInputFactory,
                     getOrcOptimizedWriterValidateMode(session),
                     orcWriterStats,

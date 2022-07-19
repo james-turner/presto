@@ -60,6 +60,8 @@ import javax.annotation.concurrent.Immutable;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -98,7 +100,6 @@ import static java.util.Objects.requireNonNull;
 import static java.util.UUID.randomUUID;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.stream.Collectors.toList;
-import static org.joda.time.DateTimeZone.UTC;
 
 @SuppressWarnings("MethodMayBeStatic")
 @State(Scope.Thread)
@@ -308,7 +309,7 @@ public class BenchmarkSelectiveStreamReaders
                     OrcPredicate.TRUE,
                     0,
                     dataSource.getSize(),
-                    UTC, // arbitrary
+                    ZonedDateTime.now(ZoneId.of("UTC")), // arbitrary
                     true,
                     new TestingHiveOrcAggregatedMemoryContext(),
                     Optional.empty(),

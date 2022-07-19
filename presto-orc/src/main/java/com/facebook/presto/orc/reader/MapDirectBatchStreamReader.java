@@ -27,13 +27,13 @@ import com.facebook.presto.orc.stream.InputStreamSources;
 import com.facebook.presto.orc.stream.LongInputStream;
 import com.google.common.io.Closer;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import javax.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static com.facebook.presto.orc.metadata.Stream.StreamKind.LENGTH;
@@ -75,7 +75,7 @@ public class MapDirectBatchStreamReader
     public MapDirectBatchStreamReader(
             Type type,
             StreamDescriptor streamDescriptor,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             OrcAggregatedMemoryContext systemMemoryContext)
             throws OrcCorruptionException

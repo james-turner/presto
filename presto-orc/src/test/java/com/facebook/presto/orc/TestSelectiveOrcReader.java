@@ -123,7 +123,7 @@ public class TestSelectiveOrcReader
     @BeforeClass
     public void setUp()
     {
-        assertEquals(DateTimeZone.getDefault(), HIVE_STORAGE_TIME_ZONE);
+        assertEquals(DateTimeZone.getDefault().toString(), HIVE_STORAGE_TIME_ZONE.getZone().toString());
     }
 
     @Test

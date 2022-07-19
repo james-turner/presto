@@ -26,12 +26,12 @@ import com.facebook.presto.orc.stream.BooleanInputStream;
 import com.facebook.presto.orc.stream.InputStreamSource;
 import com.facebook.presto.orc.stream.InputStreamSources;
 import com.facebook.presto.orc.stream.LongInputStream;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import javax.annotation.Nullable;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static com.facebook.presto.common.type.TimestampType.TIMESTAMP;
@@ -69,7 +69,7 @@ public class TimestampBatchStreamReader
     private boolean rowGroupOpen;
     private final DecodeTimestampOptions decodeTimestampOptions;
 
-    public TimestampBatchStreamReader(Type type, StreamDescriptor streamDescriptor, DateTimeZone hiveStorageTimeZone, boolean enableMicroPrecision)
+    public TimestampBatchStreamReader(Type type, StreamDescriptor streamDescriptor, ZonedDateTime hiveStorageTimeZone, boolean enableMicroPrecision)
             throws OrcCorruptionException
     {
         this.decodeTimestampOptions = new DecodeTimestampOptions(hiveStorageTimeZone, enableMicroPrecision);

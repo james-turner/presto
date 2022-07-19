@@ -27,13 +27,12 @@ import com.facebook.presto.orc.stream.BooleanInputStream;
 import com.facebook.presto.orc.stream.InputStreamSource;
 import com.facebook.presto.orc.stream.InputStreamSources;
 import com.facebook.presto.orc.stream.LongInputStream;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import javax.annotation.Nullable;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import static com.facebook.presto.common.array.Arrays.ensureCapacity;
@@ -89,7 +88,7 @@ public class TimestampSelectiveStreamReader
     public TimestampSelectiveStreamReader(
             StreamDescriptor streamDescriptor,
             Optional<TupleDomainFilter> filter,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             boolean outputRequired,
             OrcLocalMemoryContext systemMemoryContext,
             boolean enableMicroPrecision)
@@ -103,7 +102,7 @@ public class TimestampSelectiveStreamReader
         this.systemMemoryContext = requireNonNull(systemMemoryContext, "systemMemoryContext is null");
         this.nonDeterministicFilter = this.filter != null && !this.filter.isDeterministic();
         this.nullsAllowed = this.filter == null || nonDeterministicFilter || this.filter.testNull();
-        this.baseTimestampInSeconds = new DateTime(2015, 1, 1, 0, 0, requireNonNull(hiveStorageTimeZone, "hiveStorageTimeZone is null")).getMillis() / 1000;
+        this.baseTimestampInSeconds = ZonedDateTime.of(2015, 1, 1, 0, 0, 0, 0, hiveStorageTimeZone.getZone()).toInstant().getEpochSecond();
     }
 
     @Override

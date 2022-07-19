@@ -39,6 +39,8 @@ import org.testng.annotations.Test;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -58,7 +60,6 @@ import static com.facebook.presto.orc.TestingOrcPredicate.ORC_ROW_GROUP_SIZE;
 import static com.facebook.presto.orc.TestingOrcPredicate.ORC_STRIPE_SIZE;
 import static com.facebook.presto.orc.metadata.CompressionKind.NONE;
 import static io.airlift.units.DataSize.Unit.MEGABYTE;
-import static org.joda.time.DateTimeZone.UTC;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
@@ -295,7 +296,7 @@ public class TestStructBatchStreamReader
         OrcBatchRecordReader recordReader = orcReader.createBatchRecordReader(
                 includedColumns,
                 OrcPredicate.TRUE,
-                UTC,
+                ZonedDateTime.now(ZoneId.of("UTC")),
                 new TestingHiveOrcAggregatedMemoryContext(),
                 OrcReader.INITIAL_BATCH_SIZE);
 

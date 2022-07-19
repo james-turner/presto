@@ -47,12 +47,12 @@ import com.google.common.collect.Maps;
 import io.airlift.slice.SizeOf;
 import io.airlift.slice.Slice;
 import io.airlift.slice.Slices;
-import org.joda.time.DateTimeZone;
 import org.openjdk.jol.info.ClassLayout;
 
 import javax.annotation.Nullable;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -90,7 +90,7 @@ public class MapFlatSelectiveStreamReader
     // value streams with other sequence IDs
     private final StreamDescriptor baseValueStreamDescriptor;
     private final OrcTypeKind keyOrcTypeKind;
-    private final DateTimeZone hiveStorageTimeZone;
+    private final ZonedDateTime hiveStorageTimeZone;
 
     private final boolean nullsAllowed;
     private final boolean nonNullsAllowed;
@@ -142,7 +142,7 @@ public class MapFlatSelectiveStreamReader
             Map<Subfield, TupleDomainFilter> filters,
             List<Subfield> requiredSubfields,
             Optional<Type> outputType,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcRecordReaderOptions options,
             boolean legacyMapSubscript,
             OrcAggregatedMemoryContext systemMemoryContext)

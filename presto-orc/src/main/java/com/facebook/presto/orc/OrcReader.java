@@ -39,10 +39,10 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.slice.Slice;
 import io.airlift.units.DataSize;
-import org.joda.time.DateTimeZone;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -298,7 +298,7 @@ public class OrcReader
     public OrcBatchRecordReader createBatchRecordReader(
             Map<Integer, Type> includedColumns,
             OrcPredicate predicate,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcAggregatedMemoryContext systemMemoryUsage,
             int initialBatchSize)
             throws OrcCorruptionException
@@ -311,7 +311,7 @@ public class OrcReader
             OrcPredicate predicate,
             long offset,
             long length,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcAggregatedMemoryContext systemMemoryUsage,
             int initialBatchSize)
             throws OrcCorruptionException
@@ -357,7 +357,7 @@ public class OrcReader
             OrcPredicate predicate,
             long offset,
             long length,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             boolean legacyMapSubscript,
             OrcAggregatedMemoryContext systemMemoryUsage,
             Optional<OrcWriteValidation> writeValidation,
@@ -417,7 +417,7 @@ public class OrcReader
             OrcWriteValidation writeValidation,
             OrcDataSource input,
             List<Type> types,
-            DateTimeZone hiveStorageTimeZone,
+            ZonedDateTime hiveStorageTimeZone,
             OrcEncoding orcEncoding,
             OrcReaderOptions orcReaderOptions,
             DwrfEncryptionProvider dwrfEncryptionProvider,

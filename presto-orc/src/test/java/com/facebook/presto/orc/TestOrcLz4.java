@@ -19,9 +19,10 @@ import com.facebook.presto.common.type.Type;
 import com.facebook.presto.orc.cache.StorageOrcFileTailSource;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.units.DataSize;
-import org.joda.time.DateTimeZone;
 import org.testng.annotations.Test;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Map;
 
 import static com.facebook.presto.common.type.BigintType.BIGINT;
@@ -77,7 +78,7 @@ public class TestOrcLz4
         OrcBatchRecordReader reader = orcReader.createBatchRecordReader(
                 includedColumns,
                 OrcPredicate.TRUE,
-                DateTimeZone.UTC,
+                ZonedDateTime.now(ZoneId.of("UTC")),
                 new TestingHiveOrcAggregatedMemoryContext(),
                 INITIAL_BATCH_SIZE);
 
